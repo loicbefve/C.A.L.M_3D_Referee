@@ -1,0 +1,496 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SBGCSAdapter</name>
+    </assembly>
+    <members>
+        <member name="T:StarburstGaming.StarburstException">
+            <summary>
+            Exception thrown when a problem occured in the Starburst Satellite library or in this adapter
+            </summary>
+        </member>
+        <member name="M:StarburstGaming.StarburstException.#ctor(System.String,System.Boolean)">
+            <summary>
+            Creates a Starburst exception
+            </summary>
+            <param name="message">The exception message, explaining it</param>
+            <param name="satteliteAPIError">Whether this exception comes from the API (in which case we extract the last error) or the adapter</param>
+        </member>
+        <member name="T:StarburstGaming.LogMask">
+            <summary>
+            This mask specifies log categories.
+            </summary>
+        </member>
+        <member name="F:StarburstGaming.LogMask.DEV">
+            <summary>This is a development log</summary>
+        </member>
+        <member name="F:StarburstGaming.LogMask.INFO">
+            <summary>This is an information log</summary>
+        </member>
+        <member name="F:StarburstGaming.LogMask.WARNING">
+            <summary>This is a warning log</summary>
+        </member>
+        <member name="F:StarburstGaming.LogMask.ERROR">
+            <summary>This is an error log</summary>
+        </member>
+        <member name="F:StarburstGaming.LogMask.ALL">
+            <summary>This is any type of log</summary>
+        </member>
+        <member name="T:StarburstGaming.Toolbox">
+            <summary>
+            Utility functions for Starburst Gaming
+            </summary>
+        </member>
+        <member name="T:StarburstGaming.Toolbox.LogCallback">
+            <summary>
+            Delegate for the Logging callback
+            </summary>
+            <param name="msg">The message to log</param>
+        </member>
+        <member name="M:StarburstGaming.Toolbox.RegisterLogCallback(StarburstGaming.Toolbox.LogCallback,StarburstGaming.LogMask)">
+            <summary>
+            Registers a logger to be called back when a log message is emmited.
+            </summary>
+            <param name="cb">The logging callback to register</param>
+            <param name="mask">The mask of log messages to be called back for</param>
+        </member>
+        <member name="T:StarburstGaming.Nebula">
+            <summary>
+            This class is used to represent the Nebula module.
+            </summary>
+        </member>
+        <member name="P:StarburstGaming.Nebula.ModuleRunning">
+            <summary>
+            Wether the Nebula module is running.
+            </summary>
+        </member>
+        <member name="M:StarburstGaming.Nebula.InitModule">
+            <summary>
+            Initializes the Nebula module.
+            This module requires the Comet module to be loaded.
+            This module is required by the Engine module and for Topic manipulation.
+            </summary>
+        </member>
+        <member name="M:StarburstGaming.Nebula.CloseModule">
+            <summary>
+            Closes the Nebula module.
+            </summary>
+        </member>
+        <member name="T:StarburstGaming.Topic">
+            <summary>
+            This class represents a Topic. You can send comets and also receive comets using the CometReceiver class on it.
+            </summary>
+        </member>
+        <member name="T:StarburstGaming.Topic.CometReceiver">
+            <summary>
+            Use this class to receive Comets on a Topic
+            </summary>
+        </member>
+        <member name="T:StarburstGaming.Topic.CometReceiver.StorageType">
+            <summary>
+            The Topic storage types
+            </summary>
+        </member>
+        <member name="F:StarburstGaming.Topic.CometReceiver.StorageType.QUEUE">
+            <summary>This is a queue Topic. Comets are retrieved as FIFO.</summary>
+        </member>
+        <member name="F:StarburstGaming.Topic.CometReceiver.StorageType.STACK">
+            <summary>This is a stack Topic. Comets are retrieved as FILO.</summary>
+        </member>
+        <member name="F:StarburstGaming.Topic.CometReceiver.StorageType.STREAM">
+            <summary>This is a stream Topic. The latest Comet is always retrieved, older Comets are discarded.</summary>
+        </member>
+        <member name="T:StarburstGaming.Topic.CometReceiver.CometReceivedSignal">
+            <summary>
+            Delegate for the Comet received signal
+            </summary>
+            <param name="data">Optional custom signal data</param>
+        </member>
+        <member name="M:StarburstGaming.Topic.CometReceiver.#ctor(System.String,StarburstGaming.Topic.CometReceiver.StorageType)">
+            <summary>
+            Declares an CometReceiver of the given name and storage type, subscribing to the Topic.
+            </summary>
+            <param name="topicName">The name of the Topic</param>
+            <param name="storageType">The storage type of the Topic</param>
+        </member>
+        <member name="M:StarburstGaming.Topic.CometReceiver.Dispose">
+            <summary>
+            Disposes of this CometReceiver, unsubscribing from the Topic.
+            </summary>
+        </member>
+        <member name="M:StarburstGaming.Topic.CometReceiver.OnCometReceivedSignal">
+            <summary>
+            Function called when we received a comet
+            </summary>
+        </member>
+        <member name="M:StarburstGaming.Topic.CometReceiver.GetComet">
+            <summary>
+            Retrieves a Comet from this CometReceiver.
+            </summary>
+            <returns>The retrieved Comet, or null if there are none</returns>
+        </member>
+        <member name="M:StarburstGaming.Topic.CometReceiver.WaitComet(System.Single)">
+            <summary>
+            Waits for a Comet to be received on this CometReceiver.
+            Returns null if timeout expires.
+            </summary>
+            <param name="timeout">A timeout for the wait</param>
+            <returns>The received Comet or null</returns>
+        </member>
+        <member name="M:StarburstGaming.Topic.CometReceiver.FlushComets">
+            <summary>
+            Flushes this CometReceiver of all Comets.
+            </summary>
+        </member>
+        <member name="P:StarburstGaming.Topic.CometReceiver.Name">
+            <summary>
+            The name of this Topic
+            </summary>
+        </member>
+        <member name="P:StarburstGaming.Topic.CometReceiver.Storage">
+            <summary>
+            The storage type of this CometReceiver
+            </summary>
+        </member>
+        <member name="P:StarburstGaming.Topic.CometReceiver.CometCount">
+            <summary>
+            The number of Comets on this Topic
+            </summary>
+        </member>
+        <member name="E:StarburstGaming.Topic.CometReceiver.CometReceivedEvent">
+            <summary>
+            Event called when a Comet has been received on QUEUE and STACK topics
+            Warning: this event is not called on STREAM topics
+            </summary>
+        </member>
+        <member name="M:StarburstGaming.Topic.SendComet(System.String,StarburstGaming.Comet)">
+            <summary>
+            Sends a Comet on a Topic. A Topic object is not needed to send Comets.
+            </summary>
+            <param name="topicName">The name of the Topic on which to send the Comet</param>
+            <param name="comet">The comet to send</param>
+        </member>
+        <member name="T:StarburstGaming.ComponentState">
+            <summary>
+            Describes the possible states of Components
+            </summary>
+        </member>
+        <member name="F:StarburstGaming.ComponentState.STOPPED">
+            <summary>The Component is not running</summary>
+        </member>
+        <member name="F:StarburstGaming.ComponentState.STARTED">
+            <summary>The Component is running</summary>
+        </member>
+        <member name="T:StarburstGaming.ComponentAction">
+            <summary>
+            Describes the possible action executed by Components
+            </summary>
+        </member>
+        <member name="F:StarburstGaming.ComponentAction.NO_ACTION">
+            <summary>The Component shall perform no action</summary>
+        </member>
+        <member name="F:StarburstGaming.ComponentAction.STOP">
+            <summary>The Component shall stop itself</summary>
+        </member>
+        <member name="F:StarburstGaming.ComponentAction.START">
+            <summary>The Component shall start itself</summary>
+        </member>
+        <member name="T:StarburstGaming.Engine">
+            <summary>
+            This class is used to represent the Engine module.
+            </summary>
+        </member>
+        <member name="P:StarburstGaming.Engine.InSession">
+            <summary>
+            True if this Satellite is linked to a Session.
+            </summary>
+        </member>
+        <member name="P:StarburstGaming.Engine.ModuleRunning">
+            <summary>
+            Wether the Engine module is running.
+            </summary>
+        </member>
+        <member name="M:StarburstGaming.Engine.InitModule(StarburstGaming.Component.LoadCallback)">
+            <summary>
+            Initializes the Engine module, using the given Component loading function.
+            This module requires the Comet and Nebula modules to be loaded.
+            This module is required to interact with Starburst Engine, Satellites, and Components.
+            </summary>
+            <param name="cocb">A Component loading function</param>
+        </member>
+        <member name="M:StarburstGaming.Engine.TrySetupSession">
+            <summary>
+            Attemps to setup this Satellite's Session, allowing Components to be launched by Starburst Engine.
+            </summary>
+            <returns>Wether the Session was successfully found</returns>
+        </member>
+        <member name="M:StarburstGaming.Engine.TrySetupLocalSession(System.String)">
+            <summary>
+            Attemps to setup this Satellite within a given local Session, allowing Components to be launched by Starburst Engine.
+            </summary>
+            <returns>Wether the Session was successfully setup</returns>
+        </member>
+        <member name="M:StarburstGaming.Engine.CloseModule">
+            <summary>
+            Closes the Engine module.
+            </summary>
+        </member>
+        <member name="T:StarburstGaming.Satellite">
+            <summary>
+            This class is used to represent the current Satellite
+            </summary>
+        </member>
+        <member name="M:StarburstGaming.Satellite.Register(System.String)">
+            <summary>
+            Registers this Satellite to the Satellite library
+            </summary>
+            <param name="name">This Satellite's name</param>
+        </member>
+        <member name="T:StarburstGaming.Component">
+            <summary>
+            This abstract class is inherited by Components to handle state and actions.
+            </summary>
+        </member>
+        <member name="T:StarburstGaming.Component.ActionCallback">
+            <summary>
+            Delegate for the Component action callback
+            </summary>
+            <param name="action">The action to execute</param>
+            <param name="aData">Optional custom actionCallback data</param>
+        </member>
+        <member name="T:StarburstGaming.Component.LoadCallback">
+            <summary>
+            Delegate for the Component loading callback
+            </summary>
+            <param name="name">The name of the Component to load</param>
+            <returns>The loaded Component content</returns>
+        </member>
+        <member name="M:StarburstGaming.Component.#ctor(System.String)">
+            <summary>
+            Creates a Component of the given name and version
+            </summary>
+            <param name="name">The name of the Component</param>
+        </member>
+        <member name="M:StarburstGaming.Component.OnAction(StarburstGaming.ComponentAction)">
+            <summary>
+            Action callback to be overriden by actual Components to execute them
+            </summary>
+            <param name="action">The action to execute</param>
+        </member>
+        <member name="M:StarburstGaming.Component.ReportState(StarburstGaming.ComponentState)">
+            <summary>
+            Reports the state of the Component
+            </summary>
+            <param name="state">The Component's state</param>
+        </member>
+        <member name="T:StarburstGaming.PolledComponent">
+            <summary>
+            This class handles Component actions by using polling instead of multithreaded callbacks.
+            </summary>
+        </member>
+        <member name="P:StarburstGaming.PolledComponent.CompAction">
+            <summary>
+            The last action received by this Component
+            </summary>
+        </member>
+        <member name="M:StarburstGaming.PolledComponent.#ctor(System.String)">
+            <summary>
+            Declares a polled component of the given name and version
+            </summary>
+            <param name="name">The name of the Component</param>
+        </member>
+        <member name="M:StarburstGaming.PolledComponent.OnAction(StarburstGaming.ComponentAction)">
+            <summary>
+            The callback used to receive actions, it should not be overriden by developers inexperienced in multithreaded programming.
+            </summary>
+            <param name="action">The received action to execute</param>
+        </member>
+        <member name="M:StarburstGaming.PolledComponent.NextAction">
+            <summary>
+            Consumes the next action to be executed by the Component
+            </summary>
+            <returns>The next action to execute</returns>
+        </member>
+        <member name="T:StarburstGaming.Comet">
+            <summary>
+            This class represents a Comet
+            </summary>
+        </member>
+        <member name="P:StarburstGaming.Comet.ModuleRunning">
+            <summary>
+            Wether the Comet module is running.
+            </summary>
+        </member>
+        <member name="T:StarburstGaming.Comet.LoadCallback">
+            <summary>
+            Delegate for the Comet loading callback
+            </summary>
+            <param name="name">The name of the Comet to load</param>
+            <returns>The loaded Comet content</returns>
+        </member>
+        <member name="M:StarburstGaming.Comet.#ctor(System.String)">
+            <summary>
+            Creates a Comet of the given name, loading it from the model '.comet' file.
+            </summary>
+            <param name="name">The name of the Comet to create</param>
+        </member>
+        <member name="M:StarburstGaming.Comet.Dispose">
+            <summary>
+            Disposes of this Comet, deleting it.
+            </summary>
+        </member>
+        <member name="M:StarburstGaming.Comet.InitModule(StarburstGaming.Comet.LoadCallback)">
+            <summary>
+            Initializes the Comet module, using the given Comet loading function.
+            This module is required by the Engine and Nebula modules and for Comet manipulation.
+            </summary>
+            <param name="clcb">A Comet loading function</param>
+        </member>
+        <member name="M:StarburstGaming.Comet.CloseModule">
+            <summary>
+            Closes the Comet module.
+            </summary>
+        </member>
+        <member name="P:StarburstGaming.Comet.Item(System.String)">
+            <summary>Accesses an element of this Comet</summary>
+            <param name="key">The elements' name</param>
+            <returns>The accessed element</returns>
+        </member>
+        <member name="P:StarburstGaming.Comet.Item(System.Int32)">
+            <summary>Accesses an element of this CometElement as an array</summary>
+            <param name="key">The elements' index</param>
+            <returns>The accessed element</returns>
+        </member>
+        <member name="T:StarburstGaming.CometElement">
+            <summary>
+            This class represents any element of a Comet
+            </summary>
+        </member>
+        <member name="T:StarburstGaming.CometElement.SatLib_Buffer">
+            <summary>
+            This type represents a sized memory buffer
+            </summary>
+        </member>
+        <member name="F:StarburstGaming.CometElement.SatLib_Buffer.data">
+            <summary>A pointer to the buffer data</summary>
+        </member>
+        <member name="F:StarburstGaming.CometElement.SatLib_Buffer.size">
+            <summary>The size of the buffer</summary>
+        </member>
+        <member name="M:StarburstGaming.CometElement.op_Implicit(StarburstGaming.Comet)~StarburstGaming.CometElement">
+            <summary>Implicit convertion operator from Comet to CometElement</summary>
+            <param name="c">The source Comet</param>
+            <returns>The associated CometElement</returns>
+        </member>
+        <member name="P:StarburstGaming.CometElement.Item(System.String)">
+            <summary>Accesses an element of this CometElement</summary>
+            <param name="key">The elements' name</param>
+            <returns>The accessed element</returns>
+        </member>
+        <member name="P:StarburstGaming.CometElement.Item(System.Int32)">
+            <summary>Accesses an element of this CometElement as an array</summary>
+            <param name="key">The elements' index</param>
+            <returns>The accessed element</returns>
+        </member>
+        <member name="M:StarburstGaming.CometElement.GetArraySize">
+            <summary>Gets the size of an array</summary>
+            <returns>The size of the array</returns>
+        </member>
+        <member name="M:StarburstGaming.CometElement.ResizeArray(System.UInt64)">
+            <summary>Resizes an array property of a Comet</summary>
+            <param name="size">The new array size</param>
+        </member>
+        <member name="M:StarburstGaming.CometElement.Set(System.Int32)">
+            <summary>Sets an integer Comet property.</summary>
+            <param name="value">The new value of this property</param>
+        </member>
+        <member name="M:StarburstGaming.CometElement.Set(System.Boolean)">
+            <summary>Sets a boolean Comet property.</summary>
+            <param name="value">The new value of this property</param>
+        </member>
+        <member name="M:StarburstGaming.CometElement.Set(System.Single)">
+            <summary>Sets a decimal Comet property using a float.</summary>
+            <param name="value">The new value of this property</param>
+        </member>
+        <member name="M:StarburstGaming.CometElement.Set(System.Double)">
+            <summary>Sets a decimal Comet property using a double.</summary>
+            <param name="value">The new value of this property</param>
+        </member>
+        <member name="M:StarburstGaming.CometElement.Set(System.String)">
+            <summary>Sets a string Comet property.</summary>
+            <param name="value">The new value of this property</param>
+        </member>
+        <member name="M:StarburstGaming.CometElement.Set(StarburstGaming.CometElement.SatLib_Buffer)">
+            <summary>Sets a buffer Comet property.</summary>
+            <param name="buf">The new value of this property</param>
+        </member>
+        <member name="M:StarburstGaming.CometElement.Set(System.Int32[])">
+            <summary>Sets an array of integers in a Comet property.</summary>
+            <param name="value">The new array in this property</param>
+        </member>
+        <member name="M:StarburstGaming.CometElement.Set(System.Boolean[])">
+            <summary>Sets an array of booleans in a Comet property.</summary>
+            <param name="value">The new array in this property</param>
+        </member>
+        <member name="M:StarburstGaming.CometElement.Set(System.Double[])">
+            <summary>Sets an array of decimals in a Comet property using doubles.</summary>
+            <param name="value">The new array in this property</param>
+        </member>
+        <member name="M:StarburstGaming.CometElement.Set(System.String[])">
+            <summary>Sets an array of string in a Comet property.</summary>
+            <param name="value">The new array in this property</param>
+        </member>
+        <member name="M:StarburstGaming.CometElement.Set(StarburstGaming.CometElement.SatLib_Buffer[])">
+            <summary>Sets an array of buffers in a Comet property.</summary>
+            <param name="value">The new array in this property</param>
+        </member>
+        <member name="M:StarburstGaming.CometElement.AsInt">
+            <summary>Gets an integer property from a Comet</summary>
+            <returns>The property</returns>
+        </member>
+        <member name="M:StarburstGaming.CometElement.AsBool">
+            <summary>Gets a boolean property from a Comet</summary>
+            <returns>The property</returns>
+        </member>
+        <member name="M:StarburstGaming.CometElement.AsFloat">
+            <summary>Gets a decimal property from a Comet as a float</summary>
+            <returns>The property</returns>
+        </member>
+        <member name="M:StarburstGaming.CometElement.AsDouble">
+            <summary>Gets a decimal property from a Comet as a double</summary>
+            <returns>The property</returns>
+        </member>
+        <member name="M:StarburstGaming.CometElement.AsString">
+            <summary>Gets a string property from a Comet</summary>
+            <returns>The property</returns>
+        </member>
+        <member name="M:StarburstGaming.CometElement.AsBuffer">
+            <summary>Gets a buffer property from a Comet</summary>
+            <returns>The property</returns>
+        </member>
+        <member name="M:StarburstGaming.CometElement.AsArrayElement">
+            <summary>Gets an array of elements from a Comet</summary>
+            <returns>The property</returns>
+        </member>
+        <member name="M:StarburstGaming.CometElement.AsArrayInt">
+            <summary>Gets an integer array property from a Comet</summary>
+            <returns>The property</returns>
+        </member>
+        <member name="M:StarburstGaming.CometElement.AsArrayBool">
+            <summary>Gets a boolean array property from a Comet</summary>
+            <returns>The property</returns>
+        </member>
+        <member name="M:StarburstGaming.CometElement.AsArrayDouble">
+            <summary>Gets a decimal array property from a Comet as a double array</summary>
+            <returns>The property</returns>
+        </member>
+        <member name="M:StarburstGaming.CometElement.AsArrayString">
+            <summary>Gets a string array property from a Comet</summary>
+            <returns>The property</returns>
+        </member>
+        <member name="M:StarburstGaming.CometElement.AsArrayBuffer">
+            <summary>Gets a buffer array property from a Comet</summary>
+            <returns>The property</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,262 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SBGUnityAdapter</name>
+    </assembly>
+    <members>
+        <member name="T:StarburstGaming.EngineExtensions">
+            <summary>
+            Extension of the Engine class
+            </summary>
+        </member>
+        <member name="M:StarburstGaming.EngineExtensions.OnSessionJoined(System.Action,UnityEngine.MonoBehaviour)">
+            <summary>
+            Waits for a Session to be joined
+            </summary>
+            <param name="host">The host GameObject for this coroutine</param>
+            <param name="action">The action to execute when a Session is joined</param>
+        </member>
+        <member name="M:StarburstGaming.EngineExtensions.SessionJoinedCoroutine(System.Action)">
+            <summary>
+            Coroutine waiting for a Session to be joined
+            </summary>
+            <param name="action">The action to execute when a Session is joined</param>
+            <returns>The coroutine enumerator</returns>
+        </member>
+        <member name="M:StarburstGaming.EngineExtensions.OnLocalSessionJoined(System.String,System.Action,UnityEngine.MonoBehaviour)">
+            <summary>
+            Waits for the provided Session to be joined
+            </summary>
+            <param name="host">The host GameObject for this coroutine</param>
+            <param name="sessionID">The ID of the local session to setup</param>
+            <param name="action">The action to execute when the Session is joined</param>
+        </member>
+        <member name="M:StarburstGaming.EngineExtensions.LocalSessionJoinedCoroutine(System.String,System.Action)">
+            <summary>
+            Coroutine waiting for a provided session to be joined
+            </summary>
+            <param name="sessionID">The ID of the local session to setup</param>
+            <param name="action">The action to execute when the Session is joined</param>
+            <returns>The coroutine enumerator</returns>
+        </member>
+        <member name="T:StarburstGaming.Async">
+            <summary>
+            Asynchronous calls for Starburst Gaming functions
+            </summary>
+        </member>
+        <member name="M:StarburstGaming.Async.Call``1(System.Func{``0},System.Action{``0},UnityEngine.MonoBehaviour)">
+            <summary>
+            Calls a function asynchronously on the host MonoBehaviour
+            </summary>
+            <typeparam name="RetT">The return type of the function</typeparam>
+            <param name="host">The MonoBehaviour on which to call the function</param>
+            <param name="AsyncCall">The function to call asynchronously</param>
+            <param name="OnSuccess">The action to execute when the call has finished</param>
+        </member>
+        <member name="M:StarburstGaming.Async.CallCoroutine``1(System.Func{``0},System.Action{``0})">
+            <summary>
+            Coroutine used to call a function asynchronously
+            </summary>
+            <typeparam name="RetT">The return type of the function</typeparam>
+            <param name="func">The function to call asynchronously</param>
+            <param name="action">The action to execute when the call has finished</param>
+            <returns>The coroutine enumerator</returns>
+        </member>
+        <member name="M:StarburstGaming.Async.Call(System.Action,System.Action,UnityEngine.MonoBehaviour)">
+            <summary>
+            Calls an action asynchronously on the host MonoBehaviour
+            </summary>
+            <param name="host">The MonoBehaviour on which to call the function</param>
+            <param name="AsyncCall">The function to call asynchronously</param>
+            <param name="OnSuccess">The action to execute when the call has finished</param>
+        </member>
+        <member name="M:StarburstGaming.Async.CallCoroutine(System.Action,System.Action)">
+            <summary>
+            Coroutine used to call an action asynchronously
+            </summary>
+            <param name="func">The function to call asynchronously</param>
+            <param name="action">The action to execute when the call has finished</param>
+            <returns>The coroutine enumerator</returns>
+        </member>
+        <member name="T:StarburstGaming.UnityTopic">
+            <summary>
+            Extension of the Topic class for the Unity Comet waitng routine
+            </summary>
+        </member>
+        <member name="M:StarburstGaming.UnityTopic.OnCometReceivedOnce(StarburstGaming.Topic.CometReceiver,System.Action{StarburstGaming.Comet},UnityEngine.MonoBehaviour)">
+            <summary>
+            Waits for a Comet on this Topic and executes the provided action on this Comet, disposing of the comet afterwards.
+            Calling this method replaces the previous action on that topic if there was one
+            </summary>
+            <param name="host">The host GameObject for this coroutine</param>
+            <param name="topic">The topic on which to wait for a Comet</param>
+            <param name="action">The action to execute usign this Comet</param>
+        </member>
+        <member name="M:StarburstGaming.UnityTopic.CometReceivedOnceCoroutine(StarburstGaming.Topic.CometReceiver,System.Action{StarburstGaming.Comet})">
+            <summary>
+            Coroutine that waits for a Comet on this Topic and executes the provided action on this Comet, disposing of the comet afterwards.
+            </summary>
+            <param name="topic">The topic on which to wait for a Comet</param>
+            <param name="action">The action to execute usign this Comet</param>
+            <returns>The coroutine enumerator</returns>
+        </member>
+        <member name="M:StarburstGaming.UnityTopic.OnCometReceived(StarburstGaming.Topic.CometReceiver,System.Action{StarburstGaming.Comet},System.Single,UnityEngine.MonoBehaviour)">
+            <summary>
+            Executes the provided action on each comet received from this topic, disposing of the comet afterwards.
+            At most one Comet is handled every period
+            Calling this method replaces the previous action on that topic if there was one
+            </summary>
+            <param name="host">The host GameObject for this coroutine</param>
+            <param name="topic">The topic on which to get Comets</param>
+            <param name="period">The minimum comet handling period</param>
+            <param name="action">The action to execute on each Comet</param>
+        </member>
+        <member name="M:StarburstGaming.UnityTopic.CometReceivedCoroutine(StarburstGaming.Topic.CometReceiver,System.Action{StarburstGaming.Comet},System.Single)">
+            <summary>
+            Coroutine that executes the provided action on each comet received from this topic, disposing of the comet afterwards.
+            At most one Comet is handled every period
+            </summary>
+            <param name="topic">The topic on which to get Comets</param>
+            <param name="period">The minimum comet handling period</param>
+            <param name="action">The action to execute on each Comet</param>
+            <returns>The coroutine enumerator</returns>
+        </member>
+        <member name="T:StarburstGaming.SatelliteLibrary">
+            <summary>
+            This class provides some basic Unity utility functions for initializing and stoping Starburst Gaming
+            as well as Comet loading.
+            </summary>
+        </member>
+        <member name="M:StarburstGaming.SatelliteLibrary.UnityRessourceLoadCallback(System.String,System.String)">
+            <summary>
+            This Unity comet loading callback is provided for convenience.
+            </summary>
+            <param name="name">The name of the comet to load</param>
+            <param name="ressourceExtension">The extension for this ressource</param>
+            <returns>The Comet content</returns>
+        </member>
+        <member name="M:StarburstGaming.SatelliteLibrary.Init">
+            <summary>
+            This function can be used to quickly setup the Starburst Gaming environment
+            </summary>
+        </member>
+        <member name="M:StarburstGaming.SatelliteLibrary.Close">
+            <summary>
+            This function can be used to quickly close the Starburst Gaming environment
+            </summary>
+        </member>
+        <member name="P:StarburstGaming.SatelliteLibrary.Running">
+            <summary> Wether all Starburst Gaming modules are running </summary>
+        </member>
+        <member name="T:StarburstGaming.ColorComet">
+            <summary>
+            Extension of the Comet class for the Color type
+            </summary>
+        </member>
+        <member name="M:StarburstGaming.ColorComet.Set(StarburstGaming.CometElement,UnityEngine.Color)">
+            <summary>
+            Sets a Color property of a Comet
+            </summary>
+            <param name="c">The Comet containing the property</param>
+            <param name="value">The value of the property to set</param>
+        </member>
+        <member name="M:StarburstGaming.ColorComet.AsColor(StarburstGaming.CometElement)">
+            <summary>
+            Gets a Color property from a Comet
+            </summary>
+            <param name="c">The Comet containing the property</param>
+            <returns>The Color property</returns>
+        </member>
+        <member name="T:StarburstGaming.Vector2Comet">
+            <summary>
+            Extension of the Comet class for the Vector2 type
+            </summary>
+        </member>
+        <member name="M:StarburstGaming.Vector2Comet.Set(StarburstGaming.CometElement,UnityEngine.Vector2)">
+            <summary>
+            Sets a Vector2 property of a Comet
+            </summary>
+            <param name="c">The Comet containing the property</param>
+            <param name="value">The value of the property to set</param>
+        </member>
+        <member name="M:StarburstGaming.Vector2Comet.AsVector2(StarburstGaming.CometElement)">
+            <summary>
+            Gets a Vector2 property from a Comet
+            </summary>
+            <param name="c">The Comet containing the property</param>
+            <returns>The Vector2 property</returns>
+        </member>
+        <member name="T:StarburstGaming.Vector3Comet">
+            <summary>
+            Extension of the Comet class for the Vector3 type
+            </summary>
+        </member>
+        <member name="M:StarburstGaming.Vector3Comet.Set(StarburstGaming.CometElement,UnityEngine.Vector3)">
+            <summary>
+            Sets a Vector3 property of a Comet
+            </summary>
+            <param name="c">The Comet containing the property</param>
+            <param name="value">The value of the property to set</param>
+        </member>
+        <member name="M:StarburstGaming.Vector3Comet.AsVector3(StarburstGaming.CometElement)">
+            <summary>
+            Gets a Vector3 property from a Comet
+            </summary>
+            <param name="c">The Comet containing the property</param>
+            <returns>The Vector3 property</returns>
+        </member>
+        <member name="T:StarburstGaming.PolledComponentExtension">
+            <summary>
+            This class extends PolledComponent actions, adding Unity facilities.
+            </summary>
+        </member>
+        <member name="M:StarburstGaming.PolledComponentExtension.OnAction(StarburstGaming.PolledComponent,System.Action{StarburstGaming.ComponentAction},UnityEngine.MonoBehaviour)">
+            <summary>
+            Waits for a ComponentAction to be received on this Component and executes the provided action.
+            </summary>
+            <param name="host">The host GameObject for this coroutine</param>
+            <param name="comp">This component</param>
+            <param name="action">The action to call</param>
+        </member>
+        <member name="M:StarburstGaming.PolledComponentExtension.ActionCoroutine(StarburstGaming.PolledComponent,System.Action{StarburstGaming.ComponentAction})">
+            <summary>
+            Coroutine that waits for a ComponentAction to be received on this Component and executes the provided action.
+            </summary>
+            <param name="comp">This component</param>
+            <param name="action">The action to call</param>
+            <returns>The coroutine enumerator</returns>
+        </member>
+        <member name="M:StarburstGaming.PolledComponentExtension.OnComponentStart(StarburstGaming.PolledComponent,System.Action,UnityEngine.MonoBehaviour)">
+            <summary>
+            Waits for a START action to be received on this Component and executes the provided action.
+            </summary>
+            <param name="host">The host GameObject for this coroutine</param>
+            <param name="comp">This component</param>
+            <param name="action">The action to call</param>
+        </member>
+        <member name="M:StarburstGaming.PolledComponentExtension.ComponentStartCoroutine(StarburstGaming.PolledComponent,System.Action)">
+            <summary>
+            Waits for a START action to be received on this Component and executes the provided action.
+            </summary>
+            <param name="comp">This component</param>
+            <param name="action">The action to call</param>
+            <returns>The coroutine enumerator</returns>
+        </member>
+        <member name="M:StarburstGaming.PolledComponentExtension.OnComponentStop(StarburstGaming.PolledComponent,System.Action,UnityEngine.MonoBehaviour)">
+            <summary>
+            Waits for a STOP action to be received on this Component and executes the provided action.
+            </summary>
+            <param name="host">The host GameObject for this coroutine</param>
+            <param name="comp">This component</param>
+            <param name="action">The action to call</param>
+        </member>
+        <member name="M:StarburstGaming.PolledComponentExtension.ComponentStopCoroutine(StarburstGaming.PolledComponent,System.Action)">
+            <summary>
+            Waits for a STOP action to be received on this Component and executes the provided action.
+            </summary>
+            <param name="comp">This component</param>
+            <param name="action">The action to call</param>
+            <returns>The coroutine enumerator</returns>
+        </member>
+    </members>
+</doc>

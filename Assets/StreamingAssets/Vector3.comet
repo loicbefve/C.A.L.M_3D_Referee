@@ -1,0 +1,7 @@
+properties:
+- name: X
+  type: decimal
+- name: Y
+  type: decimal
+- name: Z
+  type: decimal

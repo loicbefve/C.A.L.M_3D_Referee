@@ -1,0 +1,9 @@
+properties:
+- name: R
+  type: decimal
+- name: G
+  type: decimal
+- name: B
+  type: decimal
+- name: A
+  type: decimal
