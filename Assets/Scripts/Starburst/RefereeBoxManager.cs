@@ -34,13 +34,13 @@ public class RefereeBoxManager : MonoBehaviour {
         if (boxes.ContainsKey(id))
         {
 
-            boxes[id].transform.localPosition = new Vector3(pos.x, 0.1f, pos.y);
+            boxes[id].transform.localPosition = new Vector3(pos.x, 2, pos.y);
 
         }
         else
         {
 
-            boxes.Add(id, Instantiate(boxPrefab, new Vector3(pos.x, 0.1f, pos.y), Quaternion.identity).transform);
+            boxes.Add(id, Instantiate(boxPrefab, new Vector3(pos.x, 2, pos.y), Quaternion.identity).transform);
 
         }
 
@@ -76,7 +76,7 @@ public class RefereeBoxManager : MonoBehaviour {
 
     void createBox(Vector3 screenPos)
     {
-
+        Debug.Log(Camera.main);
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(screenPos);    // We use the impact point of the ray with the lava plane
         if (Physics.Raycast(ray, out hit) && SatelliteLibrary.Running)

@@ -1,0 +1,22 @@
+[ERR]	BadParameter: Sending on topic NewBox is not allowed by your .comp files
+			D:\dev\satellite-library\src\nebula\NebulaHandler.cpp:52 in send()
+[ERR]	BadParameter: Sending on topic NewBox is not allowed by your .comp files
+			D:\dev\satellite-library\src\nebula\NebulaHandler.cpp:52 in send()
+[ERR]	BadParameter: Sending on topic NewBox is not allowed by your .comp files
+			D:\dev\satellite-library\src\nebula\NebulaHandler.cpp:52 in send()
+[ERR]	BadParameter: Sending on topic NewBox is not allowed by your .comp files
+			D:\dev\satellite-library\src\nebula\NebulaHandler.cpp:52 in send()
+[ERR]	BadParameter: Sending on topic NewBox is not allowed by your .comp files
+			D:\dev\satellite-library\src\nebula\NebulaHandler.cpp:52 in send()
+[ERR]	BadParameter: Sending on topic NewBox is not allowed by your .comp files
+			D:\dev\satellite-library\src\nebula\NebulaHandler.cpp:52 in send()
+[ERR]	BadParameter: Sending on topic NewBox is not allowed by your .comp files
+			D:\dev\satellite-library\src\nebula\NebulaHandler.cpp:52 in send()
+[ERR]	BadParameter: Sending on topic NewBox is not allowed by your .comp files
+			D:\dev\satellite-library\src\nebula\NebulaHandler.cpp:52 in send()
+[ERR]	BadParameter: Subscribing to topic Boxes is not allowed by your .comp files
+			D:\dev\satellite-library\src\nebula\NebulaHandler.cpp:14 in addTopic()
+[ERR]	BadParameter: Sending on topic NewBox is not allowed by your .comp files
+			D:\dev\satellite-library\src\nebula\NebulaHandler.cpp:52 in send()
+[ERR]	BadParameter: Sending on topic NewBox is not allowed by your .comp files
+			D:\dev\satellite-library\src\nebula\NebulaHandler.cpp:52 in send()

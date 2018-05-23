@@ -28,8 +28,6 @@ public class PlayerController : MonoBehaviour {
         float h = Input.GetAxis("Horizontal");
 		float v = Input.GetAxis ("Vertical");
         //Fonction responsable du mouvement
-        Debug.Log("facing Down :" + v);
-        Debug.Log("facing Right :" + h);
         MovePlayer(h, v);
     }
 
